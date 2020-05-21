@@ -7,7 +7,6 @@ A atividade consiste em implementar o diagrama abaixo.
 
 ![diagrama](https://github.com/matheusfaggi/gerenciamento-hotel/blob/develop/diagrama.jpg)
 
-
 ### Requisitos do sistema
 - Toda reserva deve ser feita por um recepcionista e deve ter um cliente
 
