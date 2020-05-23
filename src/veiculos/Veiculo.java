@@ -45,7 +45,5 @@ public class Veiculo {
         this.cor = cor;
     }
     
-    
-    
 }
 
