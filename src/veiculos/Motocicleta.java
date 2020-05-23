@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package veiculos;
-
+import pessoa.*;
 /**
  *
  * @author matheusfaggi
@@ -12,12 +12,12 @@ package veiculos;
 public class Motocicleta extends Veiculo {
     private int cilindrada;
     
-    public Motocicleta(String cor, int qtdLugares){
-        super(cor, qtdLugares);
+    public Motocicleta(Object dono, String cor, int qtdLugares){
+        super(dono, cor, qtdLugares);
     }
     
-    public Motocicleta(String cor){
-        super(cor);
+    public Motocicleta(Object dono, String cor){
+        super(dono, cor);
     }
 
     public int getCilindrada() {

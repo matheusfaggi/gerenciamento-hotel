@@ -5,7 +5,9 @@
  */
 package gerenciamento.hotel;
 
-import Testes.Estacionamento;
+import Testes.TesteEstacionamento;
+
+
 
 /**
  *
@@ -18,7 +20,6 @@ public class GerenciamentoHotel {
      */
     public static void main(String[] args) {
         // Roda seeds do estacionamento (Veiculos, Vaga)
-        new Estacionamento();
+        new TesteEstacionamento();
     }
-    
 }

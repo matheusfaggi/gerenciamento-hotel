@@ -24,6 +24,8 @@ public class Estacionamento {
 //          Percorre todas vagas, e exibe que veiculo pertenceu a vaga 
             System.out.println(String.format("Vaga %d: \n " , vaga.getNumero()));
             for(Object veiculo : vaga.getVeiculos()) {
+                Veiculo teste = (Veiculo)veiculo;
+                System.out.println(String.format("Dono: %s", teste.getDono().getNome()));
             /*
                 Descobre o tipo do objeto
                 Converte ela para ter acesso aos métodos
@@ -38,7 +40,7 @@ public class Estacionamento {
                     
                     System.out.println(String.format(
                         "Cor: %s \nqtdLugar: %d \nMarcha: %s\n\n",
-                        bike.getCor(), bike.getQtdLugar(), bike.isMarcha()));
+                         bike.getCor(), bike.getQtdLugar(), bike.isMarcha()));
                 }
                 if(veiculo instanceof Carro) {
                     Carro carro = (Carro)veiculo;
@@ -52,13 +54,10 @@ public class Estacionamento {
                     
                     System.out.println(String.format(
                         "Cor: %s \nqtdLugar: %d \nCilindrada: %s\n\n",
-                        moto.getCor(), moto.getQtdLugar(), moto.getCilindrada()));
+                       moto.getCor(), moto.getQtdLugar(), moto.getCilindrada()));
                 }
             }
             
         }
-    }
-    public void addVaga(Vaga vaga) {
-        this.vagas.add(vaga);
     }
 }
