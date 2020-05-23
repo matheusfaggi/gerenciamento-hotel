@@ -6,7 +6,6 @@
 package estacionamento;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import veiculos.*;
 
     
@@ -20,7 +19,6 @@ public class Vaga {
     
     
     public Vaga(int numero){
-        
         this.numero = numero;
     }
 
