@@ -27,7 +27,6 @@ public class Vaga {
     }
     
     public void addVeiculo(Object veiculo) {
-        System.out.println(veiculo instanceof Veiculo);
         this.veiculos.add((Veiculo) veiculo);
     }
     
