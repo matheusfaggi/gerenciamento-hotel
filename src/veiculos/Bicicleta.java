@@ -12,8 +12,9 @@ package veiculos;
 public class Bicicleta extends Veiculo {
     private boolean marcha;
     
-    public Bicicleta(String cor){
-        super(cor);
+    public Bicicleta(Object dono, String cor){
+        super(dono, cor);
+        
         this.marcha = false;
     }
 

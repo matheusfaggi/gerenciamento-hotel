@@ -13,12 +13,12 @@ public class Carro extends Veiculo {
     private int ano;
     private String modelo;
     
-    public Carro(String cor, int qtdLugares) {
-        super(cor, qtdLugares);
+    public Carro(Object dono, String cor, int qtdLugares) {
+        super(dono, cor, qtdLugares);
     }
     
-    public Carro(String cor){
-        super(cor);
+    public Carro(Object dono, String cor){
+        super(dono ,cor);
     }
     
     public int getAno() {
