@@ -11,11 +11,11 @@ package veiculos;
  */
 public class Bicicleta extends Veiculo {
     private boolean marcha;
+    
     public Bicicleta(String cor){
-        super(cor, 1);
+        super(cor);
         this.marcha = false;
     }
-
 
     public boolean isMarcha() {
         return marcha;

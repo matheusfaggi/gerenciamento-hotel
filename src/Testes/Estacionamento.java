@@ -18,10 +18,12 @@ import veiculos.Motocicleta;
  */
 public class Estacionamento {
     public Estacionamento(){ 
-        Bicicleta bike =  new Bicicleta("preto");
-        Motocicleta moto = new Motocicleta("Verde", 2);
+        Bicicleta bike =  new Bicicleta("Preto");
+        
+        Motocicleta moto = new Motocicleta("Verde");
         moto.setCilindrada(200);
-        Carro carro = new Carro("Cinza", 5);
+        
+        Carro carro = new Carro("Cinza");
         carro.setAno(2012);
         carro.setModelo("Uno Fiat");
 

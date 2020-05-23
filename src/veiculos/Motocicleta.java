@@ -11,8 +11,13 @@ package veiculos;
  */
 public class Motocicleta extends Veiculo {
     private int cilindrada;
+    
     public Motocicleta(String cor, int qtdLugares){
         super(cor, qtdLugares);
+    }
+    
+    public Motocicleta(String cor){
+        super(cor);
     }
 
     public int getCilindrada() {

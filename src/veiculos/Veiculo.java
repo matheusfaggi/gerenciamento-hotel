@@ -12,7 +12,23 @@ package veiculos;
 public class Veiculo {
     private int qtdLugar;
     private String cor;
-
+    
+    public Veiculo(String cor, int qtdLugar) {
+        this.setCor(cor);
+        this.setQtdLugar(qtdLugar);
+    }
+    
+    public Veiculo(String cor){
+        // Um veiculo no minimo leva uma pessoa (Bicicleta)
+        int defaultQtdLugar = 1;
+        
+        if (this instanceof Motocicleta) defaultQtdLugar = 2;
+        if (this instanceof Carro) defaultQtdLugar = 5;
+        
+        this.setQtdLugar(defaultQtdLugar);
+        this.setCor(cor);
+    }
+    
     public int getQtdLugar() {
         return qtdLugar;
     }
@@ -29,9 +45,7 @@ public class Veiculo {
         this.cor = cor;
     }
     
-    public Veiculo(String cor, int qtdLugar){
-        this.setCor(cor);
-        this.setQtdLugar(qtdLugar);
-    }
+    
+    
 }
 
