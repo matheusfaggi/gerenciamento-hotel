@@ -5,9 +5,7 @@
  */
 package estacionamento;
 
-import java.util.Set;
 import java.util.ArrayList;
-
 import veiculos.*;
 
 /**
@@ -16,9 +14,11 @@ import veiculos.*;
  */
 public class Estacionamento {
     private final ArrayList<Vaga> vagas;
+    
     public Estacionamento(ArrayList<Vaga> vagas){
         this.vagas = vagas;
     }
+    
     public void listVagas() {
         for(Vaga vaga : vagas) {
 //          Percorre todas vagas, e exibe que veiculo pertenceu a vaga 
