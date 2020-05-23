@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gerenciamento.hotel.veiculos;
+package veiculos;
 
 /**
  *
@@ -13,8 +13,8 @@ public class Carro extends Veiculo {
     private int ano;
     private String modelo;
     
-    public Carro(){
-        super();
+    public Carro(String cor, int qtdLugares){
+        super(cor, qtdLugares);
     }
     
     public int getAno() {

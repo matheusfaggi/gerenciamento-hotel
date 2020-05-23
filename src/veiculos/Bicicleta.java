@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gerenciamento.hotel.veiculos;
+package veiculos;
 
 /**
  *
  * @author matheusfaggi
  */
-public class Bicicleta extends Veiculo{
+public class Bicicleta extends Veiculo {
     private boolean marcha;
-    public Bicicleta(){
-        super();
+    public Bicicleta(String cor){
+        super(cor, 1);
         this.marcha = false;
     }
+
 
     public boolean isMarcha() {
         return marcha;

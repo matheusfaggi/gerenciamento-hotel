@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gerenciamento.hotel.veiculos;
+package veiculos;
 
 /**
  *
@@ -11,8 +11,8 @@ package gerenciamento.hotel.veiculos;
  */
 public class Motocicleta extends Veiculo {
     private int cilindrada;
-    public Motocicleta(){
-        super();
+    public Motocicleta(String cor, int qtdLugares){
+        super(cor, qtdLugares);
     }
 
     public int getCilindrada() {
