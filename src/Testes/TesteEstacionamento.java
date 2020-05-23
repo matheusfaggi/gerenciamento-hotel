@@ -36,10 +36,10 @@ public class TesteEstacionamento {
         System.out.println(bike.getDono());
 
         Vaga v1 = new Vaga(1);
-        v1.addBicicleta(bike);
+        v1.addVeiculo(bike);
 
         Vaga v2 = new Vaga(2);
-        v2.addCarro(carro);
+        v2.addVeiculo(carro);
         
         Vaga v3 = new Vaga(3);
         

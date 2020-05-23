@@ -15,7 +15,7 @@ import veiculos.*;
  */
 public class Vaga {
     private final int numero;
-    private ArrayList<Object> veiculos = new ArrayList<Object>();
+    private ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
     
     
     public Vaga(int numero){
@@ -25,23 +25,14 @@ public class Vaga {
     public Object[] getVeiculos() {
         return this.veiculos.toArray();
     }
-
-    public void addCarro (Carro carro) {
-        this.veiculos.add(carro);
-    }
     
-    public void addBicicleta(Bicicleta bicicleta){
-        this.veiculos.add(bicicleta);
-    }
-    
-    public void addMotocicleta(Motocicleta moto){
-        this.veiculos.add(moto);
+    public void addVeiculo(Object veiculo) {
+        System.out.println(veiculo instanceof Veiculo);
+        this.veiculos.add((Veiculo) veiculo);
     }
     
     public int getNumero() {
         return numero;
     }
-    
-    
     
 }
