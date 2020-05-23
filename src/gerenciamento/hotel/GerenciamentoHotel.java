@@ -5,6 +5,8 @@
  */
 package gerenciamento.hotel;
 
+import Testes.Estacionamento;
+
 /**
  *
  * @author matheusfaggi
@@ -15,7 +17,8 @@ public class GerenciamentoHotel {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // Roda seeds do estacionamento (Veiculos, Vaga)
+        new Estacionamento();
     }
     
 }
