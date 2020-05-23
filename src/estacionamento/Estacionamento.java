@@ -58,10 +58,7 @@ public class Estacionamento {
             
         }
     }
-    
-    
     public void addVaga(Vaga vaga) {
         this.vagas.add(vaga);
     }
-    
 }
