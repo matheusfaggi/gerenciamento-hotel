@@ -19,7 +19,6 @@ public  class Veiculo {
         this.setCor(cor);
         this.setQtdLugar(qtdLugar);
         this.setDono(dono);
-
     }
     
     public Veiculo(Object dono, String cor){

@@ -7,10 +7,10 @@ package Testes;
 
 import estacionamento.Estacionamento;
 import estacionamento.Vaga;
-import java.util.ArrayList;
-import java.util.Arrays;
 import veiculos.*;
 import pessoa.*;
+import java.util.*;
+
 
 /**
  *
@@ -23,17 +23,16 @@ public class TesteEstacionamento {
         
         Cliente cliente = new Cliente("Hitchcook");
         
-        
         Cliente cliente2 = new Cliente("Scully");
         
         Bicicleta bike =  new Bicicleta(recep, "Preto");
+        
 //        Motocicleta moto = new Motocicleta("Verde");
 //        moto.setCilindrada(200);
         
         Carro carro = new Carro(cliente, "Cinza");
         carro.setAno(2012);
         carro.setModelo("Uno Fiat");
-        System.out.println(bike.getDono());
 
         Vaga v1 = new Vaga(1);
         v1.addVeiculo(bike);
@@ -52,7 +51,10 @@ public class TesteEstacionamento {
         
         Estacionamento estacionamento =  new Estacionamento(vagas);
         
-
         estacionamento.listVagas();
+        
+        
+        
+        
     }
 }
