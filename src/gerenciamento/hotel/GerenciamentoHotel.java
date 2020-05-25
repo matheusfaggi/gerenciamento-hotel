@@ -20,8 +20,8 @@ public class GerenciamentoHotel {
      */
     public static void main(String[] args) {
         // Roda seeds do estacionamento (Veiculos, Vaga)
-          new TesteEstacionamento();
+//          new TesteEstacionamento();
 
-//        new TesteHospedagem();
+        new Teste();
     }
 }

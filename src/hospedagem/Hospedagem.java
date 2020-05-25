@@ -7,6 +7,8 @@ package hospedagem;
 
 import java.util.Date;
 import pessoa.Cliente;
+import java.math.*;
+import java.util.concurrent.TimeUnit;
 
 /**
  *
@@ -19,8 +21,14 @@ public class Hospedagem {
     private Quarto quarto;
     
 
-    public Hospedagem(Cliente cliente, Quarto quarto) {
+    public Hospedagem(Cliente cliente, Quarto quarto, Date entrada, Date saida) {
+        this.setCliente(cliente);
+        cliente.addHospedagem(this);
         
+        this.setEntrada(entrada);
+        this.setSaida(saida);
+        
+        this.setQuarto(quarto);
     }
     
     public Hospedagem(Cliente cliente, Quarto quarto, Reserva reserva) {
@@ -31,6 +39,13 @@ public class Hospedagem {
         cliente.addHospedagem(this);
         
         this.setQuarto(quarto);
+    }
+    
+    public float getTotalPagar(){
+        long diferencaEmMs = Math.abs(saida.getTime() - entrada.getTime());
+        long dias = TimeUnit.DAYS.convert(diferencaEmMs, TimeUnit.MILLISECONDS);
+        
+        return this.quarto.getValorDiaria() * dias;
     }
 
     public Reserva getReserva() {
@@ -54,6 +69,9 @@ public class Hospedagem {
     }
     
     private void setReserva(Reserva reserva) {
+        this.setEntrada(reserva.getEntrada());
+        this.setSaida(reserva.getSaida());
+        
         this.reserva = reserva;
     }
     
@@ -66,7 +84,7 @@ public class Hospedagem {
     }
     
 
-    public void setEntrada(Date entrada) {
+    private void setEntrada(Date entrada) {
         this.entrada = entrada;
     }
 
@@ -74,7 +92,7 @@ public class Hospedagem {
         return saida;
     }
 
-    public void setSaida(Date saida) {
+    private void setSaida(Date saida) {
         this.saida = saida;
     }
     

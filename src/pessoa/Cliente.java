@@ -9,6 +9,7 @@ import hospedagem.Reserva;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,24 +36,24 @@ public class Cliente extends Pessoa {
     }
 
     public Date getUltimaHospedagem() {
+        this.setUltimaHospedagem();
         return ultimaHospedagem;
     }
 
     private void setUltimaHospedagem() {
-//        System.out.println(this.hospedagens.size());
-        
-//        Hospedagem ultima = this.hospedagens.get();
-//        this.ultimaHospedagem =  ultima.getSaida();
+        Hospedagem ultima = this.hospedagens.get(this.hospedagens.size());
+        this.ultimaHospedagem =  ultima.getSaida();
+    }
+    public ArrayList<Hospedagem> getHospedagens(){
+        return new ArrayList<>(this.hospedagens.values());
     }
     
     public void addHospedagem(Hospedagem hospedagem) {
         hospedagens.put(this.hospedagens.size() + 1, hospedagem);
-        this.setUltimaHospedagem();
     }
     
     public void addReserva(Reserva reserva){
         this.reservas.add(reserva);
-        this.setUltimaHospedagem();
     }
     
 }

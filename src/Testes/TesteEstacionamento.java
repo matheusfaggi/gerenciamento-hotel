@@ -23,10 +23,10 @@ public class TesteEstacionamento {
         
         Cliente cliente = new Cliente("Hitchcook");
         
-        
         Cliente cliente2 = new Cliente("Scully");
         
         Bicicleta bike =  new Bicicleta(recep, "Preto");
+        
 //        Motocicleta moto = new Motocicleta("Verde");
 //        moto.setCilindrada(200);
         
@@ -52,6 +52,8 @@ public class TesteEstacionamento {
         Estacionamento estacionamento =  new Estacionamento(vagas);
         
         estacionamento.listVagas();
+        
+        
         
         
     }

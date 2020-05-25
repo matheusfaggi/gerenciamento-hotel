@@ -21,12 +21,11 @@ public class Vaga {
         this.numero = numero;
     }
 
-    public Object[] getVeiculos() {
-        return this.veiculos.toArray();
+    public ArrayList<Veiculo> getVeiculos() {
+        return this.veiculos;
     }
     
     public void addVeiculo(Object veiculo) {
-        System.out.println(veiculo instanceof Veiculo);
         this.veiculos.add((Veiculo) veiculo);
     }
     

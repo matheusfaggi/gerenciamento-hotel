@@ -17,6 +17,7 @@ import pessoa.Pessoa;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Arrays;
+import java.util.Date;
 /**
  *
  * @author matheusfaggi
@@ -47,26 +48,46 @@ public class TesteHospedagem {
         
         List <Quarto> quartos = new <Quarto> ArrayList(Arrays.asList(quarto1, quarto2, quarto3));
         
-        System.out.println("--------QUARTOS--------");
-        for(Quarto quarto : quartos ){
-            System.out.println(String.format("Descrição: %s \nQuantidade de camas: %s \nValor diária: R$ %.2f\n\n", 
-                    quarto.getTipoQuarto().getDescricao(), quarto.getTipoQuarto().getQtdCamas(),
-                    quarto.getValorDiaria()));
-        }
+//        System.out.println("--------QUARTOS--------");
+//        for(Quarto quarto : quartos ){
+//            System.out.println(String.format("Descrição: %s \nQuantidade de camas: %s \nValor diária: R$ %.2f\n\n", 
+//                    quarto.getTipoQuarto().getDescricao(), quarto.getTipoQuarto().getQtdCamas(),
+//                    quarto.getValorDiaria()));
+//        }
         
         
-        Reserva reserva =  new Reserva();
+//      CRIANDO UMA HOSPEDAGEM COM RESERVA
+        Date entrada =  new Date();
+        Date saida =  new Date();
         try{
-            reserva = new Reserva(new SimpleDateFormat("dd/MM/yyyy").parse("10/10/2020"), 
-                            new SimpleDateFormat("dd/MM/yyyy").parse("20/10/2020"),
-                            cliente, recep, quarto1);
+             entrada = new SimpleDateFormat("dd/MM/yyyy").parse("10/10/2020");
+             saida = new SimpleDateFormat("dd/MM/yyyy").parse("20/10/2020");
         }catch(ParseException e){
-            System.out.println("Erro!!");
-            System.out.println(e.getLocalizedMessage());
+            System.out.println(e.getMessage());
+        }
+
+        Reserva reserva = new Reserva(entrada, saida, cliente, recep, quarto1);
+        Hospedagem h1 = new Hospedagem(cliente, quarto1, reserva);
+        
+        
+//        HOSPEDANDO SEM RESERVA
+        try{
+             entrada = new SimpleDateFormat("dd/MM/yyyy").parse("10/12/2020");
+             saida = new SimpleDateFormat("dd/MM/yyyy").parse("25/12/2020");
+        }catch(ParseException e){
+            System.out.println(e.getMessage());
         }
         
-       
+        Hospedagem h2 = new Hospedagem(cliente, quarto3, entrada, saida);
         
-        new Hospedagem(cliente, quarto1); 
+        float totalPagamento = 0;
+        for(Hospedagem hospedagem : cliente.getHospedagens()){
+            totalPagamento += hospedagem.getTotalPagar();
+        }
+        System.out.println(String.format("%s - Total a pagar: %.2f",cliente.getNome(), totalPagamento));
+        System.out.println(cliente.getUltimaHospedagem().getDate());
+        System.out.println("fim");
+        
+        
     }
 }
