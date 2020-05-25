@@ -4,15 +4,24 @@
  * and open the template in the editor.
  */
 package pessoa;
-import java.time.LocalDate;
+import hospedagem.Hospedagem;
+import hospedagem.Reserva;
+import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
  * @author matheusfaggi
  */
-public class Cliente extends Pessoa{
+public class Cliente extends Pessoa {
     private String email;
-    private LocalDate ultimaHospedagem;
+    private Date ultimaHospedagem;
+    private final List reservas = new <Reserva> ArrayList();
+    private final Map <Integer, Hospedagem> hospedagens = new <Integer, Hospedagem> HashMap();
     
     public Cliente(String nome) {
         super(nome);
@@ -26,12 +35,25 @@ public class Cliente extends Pessoa{
         this.email = email;
     }
 
-    public LocalDate getUltimaHospedagem() {
+    public Date getUltimaHospedagem() {
+        this.setUltimaHospedagem();
         return ultimaHospedagem;
     }
 
-    public void setUltimaHospedagem(LocalDate ultimaHospedagem) {
-        this.ultimaHospedagem = ultimaHospedagem;
+    private void setUltimaHospedagem() {
+        Hospedagem ultima = this.hospedagens.get(this.hospedagens.size());
+        this.ultimaHospedagem =  ultima.getSaida();
+    }
+    public ArrayList<Hospedagem> getHospedagens(){
+        return new ArrayList<>(this.hospedagens.values());
+    }
+    
+    public void addHospedagem(Hospedagem hospedagem) {
+        hospedagens.put(this.hospedagens.size() + 1, hospedagem);
+    }
+    
+    public void addReserva(Reserva reserva){
+        this.reservas.add(reserva);
     }
     
 }

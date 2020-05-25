@@ -5,7 +5,7 @@
  */
 package gerenciamento.hotel;
 
-import Testes.TesteEstacionamento;
+import Testes.*;
 
 
 
@@ -14,12 +14,14 @@ import Testes.TesteEstacionamento;
  * @author matheusfaggi
  */
 public class GerenciamentoHotel {
-
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // Roda seeds do estacionamento (Veiculos, Vaga)
-        new TesteEstacionamento();
+//          new TesteEstacionamento();
+
+        new Teste();
     }
 }
