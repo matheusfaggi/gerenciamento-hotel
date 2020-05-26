@@ -91,13 +91,16 @@ public class Teste {
         }
 
         Reserva reserva = new Reserva(entrada, saida, cliente1, recep, quarto1);
-        System.out.println(String.format("Reserva feita! \nValor da diária: %.2f\n", reserva.getQuarto().getValorDiaria()));
+        System.out.println(String
+                .format("Reserva feita! \nValor da diária: %.2f\nRESERVA UTILIZADA ?  : %s \n", 
+                        reserva.getQuarto().getValorDiaria(),reserva.isUtilizada()));
+          
         
         Hospedagem h1 = new Hospedagem(cliente1, quarto1, reserva);
         System.out.println(String
-                .format("Hospedagem realizada sem reserva prévia!\nCliente: %s\nValor total: %.2f\n", 
-                        h1.getCliente().getNome(),h1.getTotalPagar()));
-        
+                .format("Hospedagem realizada com reserva prévia!\nCliente: %s\nValor total: %.2f \nRESERVA UTILIZADA ?  :  %s \n", 
+                        h1.getCliente().getNome(),h1.getTotalPagar(),h1.getReserva().isUtilizada()));
+       
         
         
         // HOSPEDANDO SEM RESERVA
