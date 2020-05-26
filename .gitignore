@@ -1,3 +1,8 @@
 /build/
+<<<<<<< HEAD
 /nbproject/
+=======
+nbproject/private/private.properties
+nbproject/private/private.xml
+>>>>>>> 98bea9a... ajustando testes
 
