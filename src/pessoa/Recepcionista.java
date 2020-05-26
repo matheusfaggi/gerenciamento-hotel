@@ -12,7 +12,10 @@ package pessoa;
 public class Recepcionista extends Pessoa {
     private String cargo;
     
-    public Recepcionista(String nome){
+    public Recepcionista(){
+        super();
+    }
+    public Recepcionista(String nome) throws PessoaException{
         super(nome);
     }
 

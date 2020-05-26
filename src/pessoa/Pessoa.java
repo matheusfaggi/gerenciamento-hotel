@@ -15,11 +15,16 @@ import java.util.HashSet;
  */
 public class Pessoa {
     private String nome;
-    private Set veiculos;
+    private Set<Veiculo> veiculos;
     
-    public Pessoa(String nome){
+    public Pessoa(){
+        
+    }
+    public Pessoa(String nome) throws PessoaException{
+        if(!nome.matches("^[ a-zA-Z]*$") || nome.trim().equals(""))
+            throw new PessoaException("Caracter(es) inválidos, ou nome vazio");
         this.nome = nome;
-        veiculos = new HashSet();
+        veiculos = new HashSet<Veiculo>();
     }
     
     public String getNome() {
@@ -30,7 +35,7 @@ public class Pessoa {
         this.nome = nome;    
     }
     
-    public void addCarro(Object veiculo){
+    public void addVeiculo(Veiculo veiculo){
         this.veiculos.add(veiculo);
     }
     

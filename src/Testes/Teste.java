@@ -9,6 +9,7 @@ import estacionamento.Estacionamento;
 import estacionamento.Vaga;
 import hospedagem.Hospedagem;
 import hospedagem.Quarto;
+import hospedagem.QuartoException;
 import hospedagem.Reserva;
 import hospedagem.TipoQuarto;
 import java.text.ParseException;
@@ -18,6 +19,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import pessoa.Cliente;
+import pessoa.PessoaException;
 import pessoa.Recepcionista;
 import veiculos.Bicicleta;
 import veiculos.Carro;
@@ -28,12 +30,26 @@ import veiculos.Carro;
  */
 public class Teste {
     public Teste(){
-        TipoQuarto presidencial =  new TipoQuarto("Sauna, hidromassagem e open de Hidroxocloroquina", 1);
-        TipoQuarto master =  new TipoQuarto("TV a cabo e cama massageadora", 2);
+        Quarto quarto1 = new Quarto(), 
+               quarto2 = new Quarto(), 
+               quarto3 = new Quarto();
         
-        Quarto quarto1 = new Quarto(presidencial, 200);
-        Quarto quarto2 = new Quarto(presidencial, 250);
-        Quarto quarto3 = new Quarto(master, 400);
+        try{
+            TipoQuarto presidencial =  new TipoQuarto("Sauna, hidromassagem e open de Hidroxocloroquina", 1);
+            TipoQuarto master =  new TipoQuarto("TV a cabo e cama massageadora", 2);
+            
+            quarto1 = new Quarto(presidencial, 200);
+            quarto2 = new Quarto(presidencial, 250);
+            quarto3 = new Quarto(master, 400);
+            
+            TipoQuarto quartoDefeituoso = new TipoQuarto("Quarto defeituoso sem cama", 0);
+        }catch(QuartoException e){
+            System.out.println("-----DEMOSNTRAÇÃO DE ERRO-----");
+            System.out.println("Tentativa de criar um quarto sem cama:");
+            System.out.println(e.getMessage()+"\n");
+        }
+        
+        
         
         List <Quarto> quartos = new <Quarto> ArrayList(Arrays.asList(quarto1, quarto2, quarto3));
         System.out.println("------- QUARTOS -------\n");
@@ -42,15 +58,28 @@ public class Teste {
             System.out.println(String.format("Tipo quarto: %s \nQuantidade de camas: %d \nValor diária: %.2f\n\n", 
                     tipo.getDescricao(), tipo.getQtdCamas(), quarto.getValorDiaria()));
         }
+        Recepcionista recep = new Recepcionista();
+        Cliente cliente1 = new Cliente(),
+                cliente2 = new Cliente();
+        try{
+            recep = new Recepcionista("Ronaldo Silva");
+            recep.setCargo("Gerenciamento de hospedagem");
+            
+            cliente1 = new Cliente("Hitchcook");
+            cliente1.setEmail("hitchcook@gmail.com");
+
+            cliente2 = new Cliente("Scully");
+            cliente2.setEmail("scully@gmail.com");
+            
+            Cliente clienteDefeituoso = new Cliente("M@theus F@ggi");
+
+        }catch(PessoaException e){
+            System.out.println("-----DEMOSNTRAÇÃO DE ERRO-----");
+            System.out.println("Tentativa de add cliente passando nome com caracter especial");
+            System.out.println(e.getMessage()+"\n");
+        }
         
-        Recepcionista recep = new Recepcionista("Ronaldo Silva");
-        recep.setCargo("Gerenciamento de hospedagem");
-        
-        Cliente cliente1 = new Cliente("Hitchcook");
-        cliente1.setEmail("hitchcook@gmail.com");
-        
-        Cliente cliente2 = new Cliente("Scully");
-        cliente2.setEmail("scully@gmail.com");        
+      
         
         Bicicleta bike =  new Bicicleta(recep, "Preta");
         bike.setMarcha(true);
