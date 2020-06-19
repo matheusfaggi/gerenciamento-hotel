@@ -1,5 +1,5 @@
 # gerenciamento-hotel
-Prova N1 da matéria de Programação Orientada a Objetos do professor Flavio Viotti, utilizando Java.
+Atividade continua de Programação Orientada a Objetos
 
 ## Orientações 
 A atividade consiste em implementar o diagrama abaixo.
