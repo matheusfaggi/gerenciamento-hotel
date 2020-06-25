@@ -7,7 +7,6 @@ package hospedagem;
 
 import java.util.Date;
 import pessoa.Cliente;
-import java.math.*;
 import java.util.concurrent.TimeUnit;
 
 /**

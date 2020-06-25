@@ -39,7 +39,7 @@ public  class Veiculo {
     
     private void setDono(Object dono){
         this.dono = (Pessoa) dono;
-        if(dono instanceof Pessoa) this.dono.addCarro(this);
+        if(dono instanceof Pessoa) this.dono.addVeiculo(this);
     }
 
     public Pessoa getDono() {

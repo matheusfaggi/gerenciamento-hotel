@@ -13,6 +13,10 @@ public class Quarto {
     private float valorDiaria;
     private TipoQuarto tipoQuarto;
     
+    public Quarto(){
+        
+    }
+    
     public Quarto(TipoQuarto tipoQuarto){
         this.setTipoQuarto(tipoQuarto);
     }

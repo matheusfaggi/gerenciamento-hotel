@@ -13,7 +13,9 @@ public class TipoQuarto {
     private String descricao;
     private int qtdCamas;
 
-    public TipoQuarto(String descricao, int qtdCamas){
+    public TipoQuarto(String descricao, int qtdCamas)throws QuartoException {
+        if(qtdCamas <= 0 )
+            throw new QuartoException("Um quarto tem no mínimo 1 cama.");
         this.setDescricao(descricao);
         this.setQtdCamas(qtdCamas);
     }

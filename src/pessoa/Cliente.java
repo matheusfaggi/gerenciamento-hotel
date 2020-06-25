@@ -23,7 +23,10 @@ public class Cliente extends Pessoa {
     private final List reservas = new <Reserva> ArrayList();
     private final Map <Integer, Hospedagem> hospedagens = new <Integer, Hospedagem> HashMap();
     
-    public Cliente(String nome) {
+    public Cliente(){
+        super();
+    }
+    public Cliente(String nome) throws PessoaException {
         super(nome);
     }
 

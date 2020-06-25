@@ -43,7 +43,7 @@ public  class Reserva {
         return recepcionista;
     }
 
-    public void setRecepcionista(Recepcionista recepcionista) {
+    private void setRecepcionista(Recepcionista recepcionista) {
         this.recepcionista = recepcionista;
     }
 
@@ -51,7 +51,7 @@ public  class Reserva {
         return quarto;
     }
 
-    public void setQuarto(Quarto quarto) {
+    private void setQuarto(Quarto quarto) {
         this.quarto = quarto;
     }
     
