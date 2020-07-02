@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hospedagem;
-
-import java.io.IOException;
+package hotel.veiculos;
 
 /**
  *
  * @author matheusfaggi
  */
-public class QuartoException extends IOException {
-    public QuartoException(String message){
+public class ConstrutoresException extends Exception {
+    public ConstrutoresException(String message){
         super(message);
     }
 }
