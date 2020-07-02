@@ -3,10 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package estacionamento;
+package hotel.estacionamento;
 
+import hotel.veiculos.Motocicleta;
+import hotel.veiculos.Veiculo;
+import hotel.veiculos.Carro;
+import hotel.veiculos.Bicicleta;
 import java.util.ArrayList;
-import veiculos.*;
 
 /**
  *

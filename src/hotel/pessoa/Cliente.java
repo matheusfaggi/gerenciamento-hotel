@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pessoa;
-import hospedagem.Hospedagem;
-import hospedagem.Reserva;
+package hotel.pessoa;
+import hotel.hospedagem.Hospedagem;
+import hotel.hospedagem.Reserva;
 import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;

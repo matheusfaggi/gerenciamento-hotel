@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package veiculos;
+package DAO;
+
+import java.sql.SQLException;
 
 /**
  *
  * @author matheusfaggi
  */
-public class ConstrutoresException extends Exception {
-    public ConstrutoresException(String message){
-        super(message);
-    }
+public interface DAO {
+    
 }

@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package veiculos;
-import pessoa.*;
+package hotel.veiculos;
+import hotel.pessoa.Pessoa;
 
 /**
  *
