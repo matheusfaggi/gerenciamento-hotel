@@ -79,9 +79,9 @@ CREATE TABLE hospedagem (
     check_in DATETIME NOT NULL,
     check_out DATETIME NOT NULL,
     id_quarto INT NOT NULL,
-    id_reserva INT,
     id_cliente INT NOT NULL,
     id_funcionario INT NOT NULL,
+    id_reserva INT,
     created_at DATETIME DEFAULT now(),
     PRIMARY KEY(id),
     FOREIGN KEY (id_quarto) REFERENCES quarto(id),
@@ -90,6 +90,75 @@ CREATE TABLE hospedagem (
     FOREIGN KEY (id_funcionario) REFERENCES funcionario(id)
 );
 
+INSERT INTO hospedagem (check_in, check_out, id_quarto, id_cliente, id_funcionario, id_reserva) VALUES
+	("2020/07/01 11:00:00","2020/07/05 11:00:00", 1, 1, 1, 1),
+	("2020/07/01 15:00:00","2020/07/05 15:00:00", 2, 3, 1, 2),
+	("2020/07/08 11:00:00","2020/07/12 11:00:00", 3, 4, 1, null);
+
+
+CREATE TABLE veiculo (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	placa VARCHAR(10) UNIQUE,
+	tipo VARCHAR(32) CHECK (tipo = "moto" OR tipo = "bicicleta" OR tipo = "carro"),
+	cor VARCHAR(32) NOT NULL,
+	modelo VARCHAR(64) NOT NULL,
+	ano INT,
+	cilindrada INT,
+	qtd_lugares INT,
+	marcha INT
+);
+-- INSERIR QUANDO FAZER O FRONT 
+INSERT INTO veiculo (placa, tipo, modelo, cor, ano) VALUES 
+	("ABC-1234", "carro", "Uno fiat","Azul bb", 2006),
+    ("DEF-5678", "carro", "Fiorino","Branca", 2006);
+
+CREATE TABLE estacionamento(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	descricao VARCHAR(255) NOT NULL
+);
+
+INSERT INTO estacionamento(descricao) VALUES("térreo");
+
+CREATE TABLE vaga(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+	descricao VARCHAR(10) NOT NULL,
+	id_veiculo INT UNIQUE,
+    id_estacionamento INT, 
+	FOREIGN KEY (id_veiculo) REFERENCES veiculo(id),
+    FOREIGN KEY (id_estacionamento) REFERENCES estacionamento(id)
+);
+
+INSERT INTO vaga(descricao, id_estacionamento) VALUES 
+	("1A",1),("2A",1),("3A",1),("4A",1),
+	("1B",1),("2B",1),("3B",1),("4B",1);
+
+UPDATE vaga SET id_veiculo = 1 WHERE id = 1;
+UPDATE vaga SET id_veiculo = 2 WHERE id = 2;
+
+
+CREATE VIEW combo_box_estacionamento AS 
+	SELECT e.id, e.descricao, count(*) as capacidade
+	FROM estacionamento e 
+		INNER JOIN vaga v
+		ON e.id = v.id_estacionamento 
+        WHERE v.id_veiculo IS NULL
+		GROUP BY e.id;
+
+SELECT * FROM combo_box_estacionamento;
+
+-- CREATE VIEW veiculos_estacionados AS
+-- 	SELECT e.*, v.* 
+--     FROM estacionamento e
+--     INNER JOIN vaga v
+--     ON v.id_estacionamento = e.id;
+    
+SELECT e.*, v.* 
+    FROM estacionamento e
+    INNER JOIN vaga v
+    ON v.id_estacionamento = e.id
+    WHERE v.id_veiculo IS NOT NULL;
+
+    
 
 
 
