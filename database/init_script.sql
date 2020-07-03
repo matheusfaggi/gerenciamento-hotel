@@ -1,3 +1,7 @@
+DROP DATABASE IF EXISTS gerenciamento_hotel;
+CREATE DATABASE gerenciamento_hotel;
+USE gerenciamento_hotel;
+
 CREATE TABLE tipo_quarto (
 	id INT AUTO_INCREMENT PRIMARY KEY,
     descricao VARCHAR(255),
@@ -29,11 +33,22 @@ INSERT INTO quarto(valor_diaria, id_tipo_quarto) VALUES
 
 CREATE TABLE funcionario (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-    nome  VARCHAR(25)  NOT NULL,
+    nome  VARCHAR(64)  NOT NULL,
     cargo VARCHAR(64) NOT NULL
 );
 INSERT INTO funcionario(nome, cargo) VALUES
 	("Jonas Kanhwald", "Recepcionista");
+
+CREATE TABLE cliente (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	nome VARCHAR(64) NOT NULL,
+	email VARCHAR(64) NOT NULL
+);
+INSERT INTO cliente(nome, email) VALUES
+	("Martha Nielsen", "martha.nielsen@gmail.com"),
+	("Claudia Tiddeman", "claudia.tiddeman@hotmail.com"),
+	("Michael Kanhwald", "michael.kanhwald@gmail.com"),
+	("Bartosh Tiddeman", "bartosh.tiddman@gmail.com");
 
 
 CREATE TABLE reserva (
@@ -41,17 +56,21 @@ CREATE TABLE reserva (
     entrada DATETIME NOT NULL,
     saida DATETIME NOT NULL,
     id_quarto INT NOT NULL,
-    is_usada TINYINT(1) DEFAULT 0,
+    id_cliente INT NOT NULL,
+    id_funcionario INT NOT NULL,
+    utilizada TINYINT(1) DEFAULT 0,
     created_at DATETIME DEFAULT now(),
     CONSTRAINT fk_quarto
     FOREIGN KEY (id_quarto) REFERENCES quarto(id)
+    CONSTRAINT fk_cliente
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id)
 );
 
 INSERT INTO reserva(entrada, saida, id_quarto) VALUES
-("01/07/2020 11:00:00","05/07/2020 11:00:00", 1),
-("05/07/2020 20:00:00","07/07/2020 20:00:00", 1),
-("01/07/2020 15:00:00","05/07/2020 15:00:00", 2),
-("01/07/2020 11:00:00","05/07/2020 11:00:00", 3);
+("2020/07/01 11:00:00","2020/07/05 11:00:00", 1),
+("2020/07/05 20:00:00","2020/07/07 20:00:00", 1),
+("2020/07/01 15:00:00","2020/07/05 15:00:00", 2),
+("2020/07/02 11:00:00","2020/07/06 11:00:00", 3);
 
 CREATE TABLE hospedagem (
 	id INT AUTO_INCREMENT PRIMARY KEY,
