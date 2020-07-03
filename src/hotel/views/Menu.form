@@ -38,6 +38,8 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Component id="btnCriarReserva" min="-2" pref="192" max="-2" attributes="0"/>
                   <Component id="btnCriarReserva6" min="-2" pref="192" max="-2" attributes="0"/>
+                  <Component id="btnCriarReserva7" min="-2" pref="192" max="-2" attributes="0"/>
+                  <Component id="btnCriarReserva8" min="-2" pref="192" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -56,23 +58,27 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnCriarReserva1" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                   <Component id="btnCriarReserva3" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="btnCriarReserva7" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnCriarReserva" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="btnCriarReserva5" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="btnAlterarReserva1" min="-2" pref="40" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <Component id="btnCriarReserva5" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnCriarReserva6" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="btnCriarReserva4" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="btnAlterarReserva" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnAlterarReserva1" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnCriarReserva8" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnCriarReserva2" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnAlterarReserva" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                          <Component id="btnCriarReserva" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="btnCriarReserva4" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btnCriarReserva2" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="btnCriarReserva6" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -151,6 +157,22 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCriarReserva6ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCriarReserva7">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Cadastrar ve&#xed;culo (C)"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCriarReserva7ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnCriarReserva8">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Listar ve&#xed;culos (R)"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCriarReserva8ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
