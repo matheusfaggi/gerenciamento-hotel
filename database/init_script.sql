@@ -61,28 +61,35 @@ CREATE TABLE reserva (
     utilizada TINYINT(1) DEFAULT 0,
     created_at DATETIME DEFAULT now(),
     CONSTRAINT fk_quarto
-    FOREIGN KEY (id_quarto) REFERENCES quarto(id)
+    FOREIGN KEY (id_quarto) REFERENCES quarto(id),
     CONSTRAINT fk_cliente
-    FOREIGN KEY (id_cliente) REFERENCES cliente(id)
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id),
+    CONSTRAINT fk_funcionario
+    FOREIGN KEY (id_funcionario) REFERENCES funcionario(id)
 );
 
-INSERT INTO reserva(entrada, saida, id_quarto) VALUES
-("2020/07/01 11:00:00","2020/07/05 11:00:00", 1),
-("2020/07/05 20:00:00","2020/07/07 20:00:00", 1),
-("2020/07/01 15:00:00","2020/07/05 15:00:00", 2),
-("2020/07/02 11:00:00","2020/07/06 11:00:00", 3);
+INSERT INTO reserva(entrada, saida, id_quarto, id_cliente, id_funcionario) VALUES
+	("2020/07/01 11:00:00","2020/07/05 11:00:00", 1, 1, 1),
+	("2020/07/05 20:00:00","2020/07/07 20:00:00", 1, 2, 1),
+	("2020/07/01 15:00:00","2020/07/05 15:00:00", 2, 3, 1),
+	("2020/07/02 11:00:00","2020/07/06 11:00:00", 3, 4, 1);
 
 CREATE TABLE hospedagem (
-	id INT AUTO_INCREMENT PRIMARY KEY,
+	id INT AUTO_INCREMENT,
     check_in DATETIME NOT NULL,
     check_out DATETIME NOT NULL,
     id_quarto INT NOT NULL,
     id_reserva INT,
+    id_cliente INT NOT NULL,
+    id_funcionario INT NOT NULL,
     created_at DATETIME DEFAULT now(),
-    CONSTRAINT fk_quarto
+    PRIMARY KEY(id),
     FOREIGN KEY (id_quarto) REFERENCES quarto(id),
-    FOREIGN KEY (id_reserva) REFERENCES reserva(id)
+    FOREIGN KEY (id_reserva) REFERENCES reserva(id),
+    FOREIGN KEY (id_cliente) REFERENCES cliente(id),
+    FOREIGN KEY (id_funcionario) REFERENCES funcionario(id)
 );
+
 
 
 
