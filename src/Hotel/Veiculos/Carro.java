@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel.veiculos;
+package Hotel.Veiculos;
 
 /**
  *
@@ -11,7 +11,6 @@ package hotel.veiculos;
  */
 public class Carro extends Veiculo {
     private int ano;
-    private String modelo;
     
     public Carro(Object dono, String cor, int qtdLugares) {
         super(dono, cor, qtdLugares);
@@ -27,14 +26,6 @@ public class Carro extends Veiculo {
 
     public void setAno(int ano) {
         this.ano = ano;
-    }
-
-    public String getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(String modelo) {
-        this.modelo = modelo;
     }
     
 }

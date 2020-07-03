@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel.pessoa;
-import hotel.veiculos.Veiculo;
+package Hotel.Pessoa;
+import Hotel.Veiculos.Veiculo;
 
 import java.util.Set;
 import java.util.HashSet;

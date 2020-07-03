@@ -5,24 +5,24 @@
  */
 package Testes;
 
-import hotel.estacionamento.Estacionamento;
-import hotel.estacionamento.Vaga;
-import hotel.hospedagem.Hospedagem;
-import hotel.hospedagem.Quarto;
-import hotel.hospedagem.QuartoException;
-import hotel.hospedagem.Reserva;
-import hotel.hospedagem.TipoQuarto;
+import Hotel.Estacionamento.Estacionamento;
+import Hotel.Estacionamento.Vaga;
+import Hotel.Hospedagem.Hospedagem;
+import Hotel.Hospedagem.Quarto;
+import Hotel.Hospedagem.QuartoException;
+import Hotel.Hospedagem.Reserva;
+import Hotel.Hospedagem.TipoQuarto;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import hotel.pessoa.Cliente;
-import hotel.pessoa.PessoaException;
-import hotel.pessoa.Recepcionista;
-import hotel.veiculos.Bicicleta;
-import hotel.veiculos.Carro;
+import Hotel.Pessoa.Cliente;
+import Hotel.Pessoa.PessoaException;
+import Hotel.Pessoa.Recepcionista;
+import Hotel.Veiculos.Bicicleta;
+import Hotel.Veiculos.Carro;
 
 /**
  *

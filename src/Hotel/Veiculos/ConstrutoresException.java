@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel.pessoa;
-
-import java.io.IOException;
+package Hotel.Veiculos;
 
 /**
  *
  * @author matheusfaggi
  */
-public class PessoaException extends IOException {
-    public PessoaException(String message){
+public class ConstrutoresException extends Exception {
+    public ConstrutoresException(String message){
         super(message);
     }
 }

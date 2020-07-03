@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel.views;
+package Hotel.Views;
 
-import hotel.database.Database;
+import Hotel.Database.Database;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
@@ -185,7 +185,7 @@ public class Menu extends javax.swing.JFrame {
     private void btnAlterarReservaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarReservaActionPerformed
         String x = JOptionPane.showInputDialog("Digite o id da reserva");
         if((x != null) && (x.length() > 0)){
-            new Reserva(x).setVisible(true);
+            new ReservaView(x).setVisible(true);
         }else{
             System.out.println("Erro ao pegar reservaID");
         }
@@ -209,7 +209,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnCriarReserva1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReserva1ActionPerformed
-        new Reserva().setVisible(true);
+        new ReservaView().setVisible(true);
     }//GEN-LAST:event_btnCriarReserva1ActionPerformed
 
     private void btnCriarReserva2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReserva2ActionPerformed
@@ -238,6 +238,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnCriarReserva7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReserva7ActionPerformed
         // TODO add your handling code here:
+        new CadastroVeiculos().setVisible(true);
     }//GEN-LAST:event_btnCriarReserva7ActionPerformed
 
     private void btnCriarReserva8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReserva8ActionPerformed

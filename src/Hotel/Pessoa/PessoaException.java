@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel.hospedagem;
+package Hotel.Pessoa;
 
 import java.io.IOException;
 
@@ -11,8 +11,8 @@ import java.io.IOException;
  *
  * @author matheusfaggi
  */
-public class QuartoException extends IOException {
-    public QuartoException(String message){
+public class PessoaException extends IOException {
+    public PessoaException(String message){
         super(message);
     }
 }

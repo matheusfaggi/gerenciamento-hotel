@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel.hospedagem;
+package Hotel.Hospedagem;
 
 import java.util.Date;
-import hotel.pessoa.Cliente;
-import hotel.pessoa.Recepcionista;
+import Hotel.Pessoa.Cliente;
+import Hotel.Pessoa.Recepcionista;
 
 /**
  *

@@ -3,8 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel.veiculos;
-import hotel.pessoa.Pessoa;
+package Hotel.Veiculos;
+import Hotel.Pessoa.Pessoa;
 
 /**
  *
@@ -12,8 +12,9 @@ import hotel.pessoa.Pessoa;
  */
 public  class Veiculo {
     private int qtdLugar;
-    private String cor;
-    private Pessoa dono;
+    private String cor, placa, modelo;
+    private Pessoa dono; 
+    
     
     public Veiculo(Object dono, String cor, int qtdLugar) {
         this.setCor(cor);
@@ -31,6 +32,22 @@ public  class Veiculo {
         this.setQtdLugar(defaultQtdLugar);
         this.setCor(cor);
         this.setDono(dono);
+    }
+
+    public String getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(String modelo) {
+        this.modelo = modelo;
+    }
+
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
     public String getNomeDono() {

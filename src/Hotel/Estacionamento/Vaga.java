@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hotel.estacionamento;
+package Hotel.Estacionamento;
 
-import hotel.veiculos.Veiculo;
+import Hotel.Veiculos.Veiculo;
 import java.util.ArrayList;
 
 /**
