@@ -7,6 +7,8 @@ package Hotel.Views;
 
 import Hotel.Database.Database;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
@@ -39,10 +41,10 @@ public class Menu extends javax.swing.JFrame {
         btnAlterarReserva1 = new javax.swing.JButton();
         btnCriarReserva3 = new javax.swing.JButton();
         btnCriarReserva4 = new javax.swing.JButton();
-        btnCriarReserva5 = new javax.swing.JButton();
         btnCriarReserva6 = new javax.swing.JButton();
         btnCriarReserva7 = new javax.swing.JButton();
         btnCriarReserva8 = new javax.swing.JButton();
+        btnCriarReserva5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -93,17 +95,10 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        btnCriarReserva4.setText("Alterar cliente (UD)");
+        btnCriarReserva4.setText("Manter cliente (RUD)");
         btnCriarReserva4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCriarReserva4ActionPerformed(evt);
-            }
-        });
-
-        btnCriarReserva5.setText("Listar clientes (R)");
-        btnCriarReserva5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCriarReserva5ActionPerformed(evt);
             }
         });
 
@@ -128,6 +123,13 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        btnCriarReserva5.setText("Listar hospedagem cliente");
+        btnCriarReserva5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCriarReserva5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -147,7 +149,7 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(btnCriarReserva8, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnCriarReserva4, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                    .addComponent(btnCriarReserva4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCriarReserva3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCriarReserva5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -161,21 +163,19 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(btnCriarReserva3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCriarReserva7, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCriarReserva5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAlterarReserva1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCriarReserva8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnAlterarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCriarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCriarReserva4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnCriarReserva2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCriarReserva6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAlterarReserva1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCriarReserva8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCriarReserva4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAlterarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCriarReserva, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCriarReserva5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCriarReserva2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCriarReserva6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -222,15 +222,18 @@ public class Menu extends javax.swing.JFrame {
 
     private void btnCriarReserva3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReserva3ActionPerformed
         // TODO add your handling code here:
+        new ClienteShowView(this).setVisible(true);
     }//GEN-LAST:event_btnCriarReserva3ActionPerformed
 
     private void btnCriarReserva4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReserva4ActionPerformed
-        // TODO add your handling code here:
+        String email = JOptionPane.showInputDialog(null,"Digite o email do cliente");
+        
+        try {
+            new ClienteShowView(this, email).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(Menu.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnCriarReserva4ActionPerformed
-
-    private void btnCriarReserva5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReserva5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCriarReserva5ActionPerformed
 
     private void btnCriarReserva6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReserva6ActionPerformed
         // TODO add your handling code here:
@@ -244,6 +247,10 @@ public class Menu extends javax.swing.JFrame {
     private void btnCriarReserva8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReserva8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnCriarReserva8ActionPerformed
+
+    private void btnCriarReserva5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReserva5ActionPerformed
+        new HospedagemListView().setVisible(true);
+    }//GEN-LAST:event_btnCriarReserva5ActionPerformed
 
     /**
      * @param args the command line arguments
