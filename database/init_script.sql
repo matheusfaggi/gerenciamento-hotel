@@ -19,15 +19,16 @@ INSERT INTO tipo_quarto(descricao, qtdCamas) VALUES
 
 CREATE TABLE quarto(
 	id INT AUTO_INCREMENT PRIMARY KEY,
+	descricao VARCHAR(64) NOT NULL,
     valor_diaria DECIMAL(6,2) NOT NULL,
     id_tipo_quarto INT NOT NULL,
     CONSTRAINT fk_tipo_quarto 
     FOREIGN KEY (id_tipo_quarto) REFERENCES tipo_quarto(id)
 );
 
-INSERT INTO quarto(valor_diaria, id_tipo_quarto) VALUES 
-	(80.00, 1), (90.00, 2), (110.00, 3),
-	(120.00, 4), (130.00, 5), (140.00, 6);
+INSERT INTO quarto(valor_diaria, id_tipo_quarto, descricao) VALUES 
+	(80.00, 1, "01"), (90.00, 2, "02"), (110.00, 3, "03"),
+	(120.00, 4, "11"), (130.00, 5, "12"), (140.00, 6, "13");
 
 -- SELECT * FROM quarto;
 
@@ -42,7 +43,7 @@ INSERT INTO funcionario(nome, cargo) VALUES
 CREATE TABLE cliente (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	nome VARCHAR(64) NOT NULL,
-	email VARCHAR(64) NOT NULL
+	email VARCHAR(64) NOT NULL UNIQUE
 );
 INSERT INTO cliente(nome, email) VALUES
 	("Martha Nielsen", "martha.nielsen@gmail.com"),
@@ -144,19 +145,32 @@ CREATE VIEW combo_box_estacionamento AS
         WHERE v.id_veiculo IS NULL
 		GROUP BY e.id;
 
-SELECT * FROM combo_box_estacionamento;
+-- SELECT * FROM combo_box_estacionamento;
 
--- CREATE VIEW veiculos_estacionados AS
--- 	SELECT e.*, v.* 
---     FROM estacionamento e
---     INNER JOIN vaga v
---     ON v.id_estacionamento = e.id;
+CREATE VIEW veiculos_estacionados AS    
+	SELECT e.descricao AS andar, v.descricao AS vaga, ve.placa 
+    	FROM estacionamento e
+    	INNER JOIN vaga v
+    	ON v.id_estacionamento = e.id
+    	INNER JOIN veiculo ve
+    	ON ve.id = v.id_veiculo 
+    	WHERE v.id_veiculo IS NOT NULL;
     
-SELECT e.*, v.* 
-    FROM estacionamento e
-    INNER JOIN vaga v
-    ON v.id_estacionamento = e.id
-    WHERE v.id_veiculo IS NOT NULL;
+
+    SELECT * FROM hospedagem h;
+    SELECT * FROM reserva r; 
+   
+   
+   SELECT c.nome, tq.descricao,
+ q.valor_diaria,DATEDIFF(h.check_out, h.check_in) AS diarias,
+ DATEDIFF(h.check_out, h.check_in) * q.valor_diaria AS total_pagar
+ FROM cliente c 
+ INNER JOIN hospedagem h
+ ON c.id = h.id_cliente
+ INNER JOIN quarto q
+ ON q.id = h.id_quarto
+ INNER JOIN tipo_quarto tq
+ ON q.id_tipo_quarto = tq.id
 
     
 
