@@ -3,18 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DAO;
+package Hotel.DAO;
 
 import Hotel.Database.Database;
 import Hotel.Pessoa.Cliente;
 import Hotel.Pessoa.PessoaException;
+import Hotel.Views.TableModel.ClienteListTableModel;
 import Hotel.Views.TableModel.HospedagemListTableModel;
 import Hotel.Views.TableModel.HospedagemModel;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,7 +23,7 @@ import java.sql.ResultSet;
  * @author matheusfaggi
  */
 public class ClienteDAO implements DAO<Cliente>{
-    private Cliente cliente;
+    
     private String sql;
     private PreparedStatement pst;
     private ResultSet rs;
@@ -78,8 +77,10 @@ public class ClienteDAO implements DAO<Cliente>{
 
     @Override
     public Cliente busca(Cliente dado) throws SQLException {
+        Cliente cliente = null;
         sql = "SELECT * FROM cliente WHERE email = ?";
-        cliente = null;
+        
+        
         Database.open();
         pst = Database.getConnection().prepareStatement(sql);
         
@@ -87,6 +88,7 @@ public class ClienteDAO implements DAO<Cliente>{
         
         rs = pst.executeQuery();
         if(rs.next()){
+            cliente = new Cliente();
             try {
                 cliente = new Cliente(rs.getString("nome"));
                 cliente.setEmail(rs.getString("email"));
@@ -95,12 +97,14 @@ public class ClienteDAO implements DAO<Cliente>{
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
+        
         Database.close();
         return cliente;
     }
 
     @Override
     public List<Cliente> listar(String criterio) throws SQLException {
+        Cliente cliente = null;
         List<Cliente> response = new ArrayList<> ();
         
         sql = "SELECT * FROM cliente";
@@ -118,7 +122,8 @@ public class ClienteDAO implements DAO<Cliente>{
                 cliente.setEmail(rs.getString("email"));
                 
             } catch (PessoaException ex) {
-                Logger.getLogger(ClienteDAO.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+
             }
             
         }
@@ -142,7 +147,7 @@ public class ClienteDAO implements DAO<Cliente>{
                     "INNER JOIN quarto q\n " +
                     "ON q.id = h.id_quarto\n " +
                     "INNER JOIN tipo_quarto tq\n " +
-                    "ON q.id_tipo_quarto = tq.id \n" + criterio;
+                    "ON q.id_tipo_quarto = tq.id\n " + criterio;
                     
         
         Database.open();
@@ -163,6 +168,27 @@ public class ClienteDAO implements DAO<Cliente>{
         }
         System.out.println("Quantidade de registro encontrados: " + i);
         
+        return response;
+    }
+    
+    public ClienteListTableModel listarClientes(String email) throws SQLException{
+        ClienteListTableModel response =  new  ClienteListTableModel();
+        
+        String criterio = (email.length() == 0) ?  (" ") : ("WHERE email like \"%" + email + "%\"");
+        sql =  "SELECT * FROM cliente " + criterio;
+        
+        Database.open();
+        pst = Database.getConnection().prepareStatement(sql);
+        rs = pst.executeQuery();
+        
+        while(rs.next()){
+            Cliente aux = new Cliente();
+            aux.setId(rs.getInt("id"));
+            aux.setEmail(rs.getString("email"));
+            aux.setNome(rs.getString("nome"));
+            
+            response.addRow(aux);
+        }
         return response;
     }
     
