@@ -5,7 +5,7 @@
  */
 package Hotel.Views;
 
-import DAO.ClienteDAO;
+import Hotel.DAO.ClienteDAO;
 import Hotel.Pessoa.Cliente;
 import java.sql.SQLException;
 import java.util.logging.Level;

@@ -213,7 +213,8 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCriarReserva1ActionPerformed
 
     private void btnCriarReserva2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCriarReserva2ActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(this, "Já possui reserva ?");
+        new HospedagemView(this).setVisible(true);
     }//GEN-LAST:event_btnCriarReserva2ActionPerformed
 
     private void btnAlterarReserva1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarReserva1ActionPerformed

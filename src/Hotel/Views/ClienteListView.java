@@ -5,12 +5,12 @@
  */
 package Hotel.Views;
 
-import Hotel.Views.TableModel.HospedagemListTableModel;
 import Hotel.DAO.ClienteDAO;
+import Hotel.Pessoa.Cliente;
+import Hotel.Views.TableModel.ClienteListTableModel;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashSet;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -18,34 +18,38 @@ import javax.swing.event.ListSelectionListener;
  *
  * @author matheusfaggi
  */
-public class HospedagemListView extends javax.swing.JFrame {
-    JFrame parent;
-    HospedagemListTableModel tableModel;
+public class ClienteListView extends javax.swing.JFrame {
+    private JFrame parentNode;
     /**
      * Creates new form ClienteListView
      */
-    public HospedagemListView() {
-        initComponents();
-//        add click na table
-
-//        table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-//        public void valueChanged(ListSelectionEvent event) {
-//            // do some actions here, for example
-//            // print first column value from selected row
-//            if (!event.getValueIsAdjusting() && table.getSelectedRow() != -1){
-//                new HospedagemView(
-//                        table.getValueAt(table.getSelectedRow(), 0).toString())
-//                        .setVisible(true);
-//                
-//            } 
-//        }   
-//    });
-}
-    
-    public HospedagemListView(JFrame parent) {
-        
+    public ClienteListView() {
         initComponents();
     }
+
+    public ClienteListView(JFrame parent) {
+        initComponents();
+        this.parentNode = parent;
+        
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+        public void valueChanged(ListSelectionEvent event) {
+            // do some actions here, for example
+            // print first column value from selected row
+            if (!event.getValueIsAdjusting() && table.getSelectedRow() != -1){
+                System.out.println(table.getValueAt(table.getSelectedRow(), 0).toString());
+                
+            } 
+        }   
+    });
+        
+    }
+
+    ClienteListView(CadastroVeiculos parent, Cliente cliente) {
+        this.parentNode = parent;
+        
+        
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -55,27 +59,18 @@ public class HospedagemListView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
         txtEmail = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnPesquisar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        table.setModel(table.getModel());
-        table.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tableMouseClicked(evt);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
-        jScrollPane1.setViewportView(table);
-        if (table.getColumnModel().getColumnCount() > 0) {
-            table.getColumnModel().getColumn(0).setHeaderValue("Title 1");
-            table.getColumnModel().getColumn(1).setHeaderValue("Title 2");
-            table.getColumnModel().getColumn(2).setHeaderValue("Title 3");
-            table.getColumnModel().getColumn(3).setHeaderValue("Title 4");
-        }
 
         jLabel1.setText("E-mail");
 
@@ -86,6 +81,13 @@ public class HospedagemListView extends javax.swing.JFrame {
             }
         });
 
+        table.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(table);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,7 +95,7 @@ public class HospedagemListView extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 769, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
@@ -122,20 +124,22 @@ public class HospedagemListView extends javax.swing.JFrame {
 
     private void btnPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPesquisarActionPerformed
         try {
-            HospedagemListTableModel modelo = new ClienteDAO().listarHospedagens(txtEmail.getText());
+            ClienteListTableModel modelo = new ClienteDAO().listarClientes(txtEmail.getText());
             table.setModel(modelo);
-            
-            
+
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
-        
-        
+
     }//GEN-LAST:event_btnPesquisarActionPerformed
 
     private void tableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMouseClicked
-        
+
     }//GEN-LAST:event_tableMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -154,21 +158,20 @@ public class HospedagemListView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HospedagemListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HospedagemListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HospedagemListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HospedagemListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ClienteListView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HospedagemListView().setVisible(true);
+                new ClienteListView().setVisible(true);
             }
         });
     }
