@@ -10,7 +10,7 @@ import Hotel.Pessoa.Pessoa;
  *
  * @author matheusfaggi
  */
-public  class Veiculo {
+public class Veiculo {
     private int qtdLugar;
     private String cor, placa, modelo;
     private Pessoa dono; 

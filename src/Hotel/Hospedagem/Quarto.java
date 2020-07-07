@@ -12,6 +12,8 @@ package Hotel.Hospedagem;
 public class Quarto {
     private float valorDiaria;
     private TipoQuarto tipoQuarto;
+    private String descricao;
+    
     
     public Quarto(){
         
@@ -24,6 +26,20 @@ public class Quarto {
     public Quarto(TipoQuarto tipoQuarto, float valorDiaria){
         this.setTipoQuarto(tipoQuarto);
         this.valorDiaria = valorDiaria;
+    }
+
+    @Override
+    public String toString() {
+        return descricao + " - " + tipoQuarto.getDescricao();
+    }
+    
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
     
     public TipoQuarto getTipoQuarto() {
