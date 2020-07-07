@@ -11,7 +11,7 @@ INSERT INTO tipo_quarto(descricao, qtdCamas) VALUES
 	("Quarto solteiro Standard", 1),
 	("Quarto solteiro Master", 1),
 	("Quarto solteiro Deluxe", 1),
-	("Quarto duplo solteiro Standart", 2),
+	("Quarto duplo solteiro Standard", 2),
 	("Quarto duplo solteiro Master", 2),
 	("Quarto duplo solteiro Deluxe", 2);
 
@@ -28,7 +28,8 @@ CREATE TABLE quarto(
 
 INSERT INTO quarto(valor_diaria, id_tipo_quarto, descricao) VALUES 
 	(80.00, 1, "01"), (90.00, 2, "02"), (110.00, 3, "03"),
-	(120.00, 4, "11"), (130.00, 5, "12"), (140.00, 6, "13");
+	(120.00, 4, "11"), (130.00, 5, "12"), (140.00, 6, "13"),
+	(120.00, 4, "21"), (130.00, 5, "22"), (140.00, 6, "23");
 
 -- SELECT * FROM quarto;
 
@@ -54,8 +55,8 @@ INSERT INTO cliente(nome, email) VALUES
 
 CREATE TABLE reserva (
 	id INT AUTO_INCREMENT PRIMARY KEY,
-    entrada DATETIME NOT NULL,
-    saida DATETIME NOT NULL,
+    entrada DATE NOT NULL,
+    saida DATE NOT NULL,
     id_quarto INT NOT NULL,
     id_cliente INT NOT NULL,
     id_funcionario INT NOT NULL,
@@ -77,8 +78,8 @@ INSERT INTO reserva(entrada, saida, id_quarto, id_cliente, id_funcionario) VALUE
 
 CREATE TABLE hospedagem (
 	id INT AUTO_INCREMENT,
-    check_in DATETIME NOT NULL,
-    check_out DATETIME NOT NULL,
+    check_in DATE NOT NULL,
+    check_out DATE NOT NULL,
     id_quarto INT NOT NULL,
     id_cliente INT NOT NULL,
     id_funcionario INT NOT NULL,
@@ -100,7 +101,7 @@ INSERT INTO hospedagem (check_in, check_out, id_quarto, id_cliente, id_funcionar
 CREATE TABLE veiculo (
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	placa VARCHAR(10) UNIQUE,
-	tipo VARCHAR(32) CHECK (tipo = "moto" OR tipo = "bicicleta" OR tipo = "carro"),
+	tipo VARCHAR(32) NOT NULL CHECK (tipo = "moto" OR tipo = "bicicleta" OR tipo = "carro") ,
 	cor VARCHAR(32) NOT NULL,
 	modelo VARCHAR(64) NOT NULL,
 	ano INT,
@@ -135,45 +136,6 @@ INSERT INTO vaga(descricao, id_estacionamento) VALUES
 
 UPDATE vaga SET id_veiculo = 1 WHERE id = 1;
 UPDATE vaga SET id_veiculo = 2 WHERE id = 2;
-
-
-CREATE VIEW combo_box_estacionamento AS 
-	SELECT e.id, e.descricao, count(*) as capacidade
-	FROM estacionamento e 
-		INNER JOIN vaga v
-		ON e.id = v.id_estacionamento 
-        WHERE v.id_veiculo IS NULL
-		GROUP BY e.id;
-
--- SELECT * FROM combo_box_estacionamento;
-
-CREATE VIEW veiculos_estacionados AS    
-	SELECT e.descricao AS andar, v.descricao AS vaga, ve.placa 
-    	FROM estacionamento e
-    	INNER JOIN vaga v
-    	ON v.id_estacionamento = e.id
-    	INNER JOIN veiculo ve
-    	ON ve.id = v.id_veiculo 
-    	WHERE v.id_veiculo IS NOT NULL;
-    
-
-    SELECT * FROM hospedagem h;
-    SELECT * FROM reserva r; 
-   
-   
-   SELECT c.nome, tq.descricao,
- q.valor_diaria,DATEDIFF(h.check_out, h.check_in) AS diarias,
- DATEDIFF(h.check_out, h.check_in) * q.valor_diaria AS total_pagar
- FROM cliente c 
- INNER JOIN hospedagem h
- ON c.id = h.id_cliente
- INNER JOIN quarto q
- ON q.id = h.id_quarto
- INNER JOIN tipo_quarto tq
- ON q.id_tipo_quarto = tq.id
-
-    
-
 
 
 
