@@ -109,6 +109,7 @@ CREATE TABLE veiculo (
 	qtd_lugares INT,
 	marcha INT
 );
+
 -- INSERIR QUANDO FAZER O FRONT 
 INSERT INTO veiculo (placa, tipo, modelo, cor, ano) VALUES 
 	("ABC-1234", "carro", "Uno fiat","Azul bb", 2006),

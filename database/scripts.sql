@@ -1,3 +1,4 @@
+USE gerenciamento_hotel;
 CREATE VIEW combo_box_estacionamento AS 
 	SELECT e.id, e.descricao, count(*) as capacidade
 	FROM estacionamento e 
@@ -91,7 +92,7 @@ WHERE CAST(STR_TO_DATE('20/01/2020','%d/%m/%Y') as DATE)
 NOT BETWEEN CAST(h.check_in as DATE) AND CAST(h.check_out as DATE) AND CAST(h.check_out as DATE)) 
 AND tq.descricao like  'Quarto duplo solteiro Standard'  GROUP BY 1;
 
-SELECT q.id, q.descricao, q.valor_diaria,q.id_tipo_quarto, tq.descricao FROM quarto q 
+SELECT q.id, q.descricao, q.valor_diaria,q.id_tipo_quarto, tq.descricao, tq.qtdCamas FROM quarto q 
 INNER JOIN tipo_quarto tq
 ON q.id_tipo_quarto = tq.id
 ORDER BY 2;

@@ -103,21 +103,16 @@ public class HospedagemDAO implements DAO<Hospedagem> {
         return response;
     }
     
-    public Map<Quarto, Integer> listQuartosDisponiveis(String entrada, String tipoQuarto) throws SQLException{
-            String criterio = (entrada.length() == 0) 
-                    ?  (" ") 
-                    : ("WHERE q.id NOT IN ( \n" +
-                        "SELECT h.id FROM hospedagem h \n" +
-                        "WHERE CAST(STR_TO_DATE('" + entrada + "','%d/%m/%Y') as DATE) \n" +
-                        "NOT BETWEEN CAST(h.check_in as DATE) AND CAST(h.check_out as DATE) AND CAST(h.check_out as DATE)) \n");
+    public Map<Quarto, Integer> listQuartosDisponiveis() throws SQLException{
+            
             
         Map response =  new HashMap<Quarto, Integer>();
-        sql = "SELECT q.id, q.valor_diaria, q.descricao, tq.descricao as tipo_quarto_desc, tq.qtdCamas, tq.id as tipo_quarto_id\n" +
+        sql = "SELECT q.id, q.valor_diaria, q.descricao," + 
+            " tq.descricao as tipo_quarto_desc, tq.qtdCamas, tq.id as tipo_quarto_id\n" +
             " FROM quarto q\n" +
             " INNER JOIN tipo_quarto tq\n" +
-            " ON q.id_tipo_quarto = tq.id " +
-            criterio + " GROUP BY 1 ORDER BY 3";
-//        System.out.println(sql);
+            " ON q.id_tipo_quarto = tq.id GROUP BY 1 ORDER BY 3";
+        
         Database.open();
         
         pst = Database.getConnection().prepareStatement(sql);
