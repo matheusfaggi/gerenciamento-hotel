@@ -18,8 +18,8 @@ public class Database {
     
     static {
         database = "gerenciamento_hotel";
-        user = "root";
-        password = "Faggi@123";
+        user = "latorre";
+        password = "juan123";
         host = "localhost";        
     }
     

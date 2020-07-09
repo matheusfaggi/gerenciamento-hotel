@@ -5,7 +5,7 @@
  */
 package Hotel.Hospedagem;
 
-import java.util.Date;
+import java.sql.Date;
 import Hotel.Pessoa.Cliente;
 import java.util.concurrent.TimeUnit;
 
@@ -18,6 +18,45 @@ public class Hospedagem {
     private Reserva reserva;
     private Cliente cliente;
     private Quarto quarto;
+    private TipoQuarto tipoQuarto;
+    private int clienteid;
+    private int quartoid;
+    private int funcionarioid;
+
+    public Hospedagem(Date entrada, Date saida, int a, int b, int i) {
+        this.setEntrada(entrada);
+        this.setSaida(saida);
+        this.quartoid(a);
+        this.clienteid(b);
+        this.funcionarioid(i);
+        
+        
+    }
+
+    public int getClienteid() {
+        return clienteid;
+    }
+
+    public void setClienteid(int clienteid) {
+        this.clienteid = clienteid;
+    }
+
+    public int getQuartoid() {
+        return quartoid;
+    }
+
+    public void setQuartoid(int quartoid) {
+        this.quartoid = quartoid;
+    }
+
+    public int getFuncionarioid() {
+        return funcionarioid;
+    }
+
+    public void setFuncionarioid(int funcionarioid) {
+        this.funcionarioid = funcionarioid;
+    }
+    
     
 
     public Hospedagem(Cliente cliente, Quarto quarto, Date entrada, Date saida) {
@@ -39,6 +78,11 @@ public class Hospedagem {
         
         this.setQuarto(quarto);
     }
+    public Hospedagem() {
+        
+    }
+
+ 
     
     public float getTotalPagar(){
         long diferencaEmMs = Math.abs(saida.getTime() - entrada.getTime());
@@ -87,12 +131,32 @@ public class Hospedagem {
         this.entrada = entrada;
     }
 
+    public TipoQuarto getTipoQuarto() {
+        return tipoQuarto;
+    }
+
+    public void setTipoQuarto(TipoQuarto tipoQuarto) {
+        this.tipoQuarto = tipoQuarto;
+    }
+
     public Date getSaida() {
         return saida;
     }
 
     private void setSaida(Date saida) {
         this.saida = saida;
+    }
+
+    private void clienteid(int b) {
+        this.clienteid = b;
+    }
+
+    private void quartoid(int a) {
+        this.quartoid = a;
+    }
+
+    private void funcionarioid(int i) {
+        this.funcionarioid = i;
     }
     
     

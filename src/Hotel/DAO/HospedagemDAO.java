@@ -10,6 +10,7 @@ import Hotel.Hospedagem.Hospedagem;
 import Hotel.Hospedagem.Quarto;
 import Hotel.Hospedagem.QuartoException;
 import Hotel.Hospedagem.TipoQuarto;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -31,10 +32,15 @@ public class HospedagemDAO implements DAO<Hospedagem> {
     
     @Override
     public boolean adiciona(Hospedagem dado) throws SQLException {
-        sql = "INSERT INTO cliente(nome,email) VALUES(?, ?);";
-        
+        sql = "INSERT INTO hospedagem(check_in,check_out,id_quarto,id_cliente,id_funcionario) VALUES(?, ?, ?, ?, ?);";
+         
         Database.open();
         pst = Database.getConnection().prepareStatement(sql);
+        pst.setDate(1, (Date) dado.getEntrada());
+        pst.setDate(2, (Date) dado.getSaida());
+        pst.setInt(3, dado.getQuartoid());
+        pst.setInt(4, dado.getClienteid());
+        pst.setInt(5, dado.getFuncionarioid());
         
         
         
@@ -64,21 +70,8 @@ public class HospedagemDAO implements DAO<Hospedagem> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public Map<TipoQuarto, Integer> listTiposQuartoDisponiveis(String entrada) throws SQLException{
-            String criterio = (entrada.length() == 0 ) 
-                    ?  (" ") 
-                    : ("WHERE CAST(STR_TO_DATE('" + entrada + "','%d/%m/%Y') as DATE) \n"
-                    + "NOT BETWEEN CAST(h.check_in as DATE) \n"
-                    + "AND CAST(h.check_out as DATE) AND CAST(h.check_out as DATE) \n");
-            
-        sql = "SELECT tq.id, tq.descricao, tq.qtdCamas, count(*) as disponiveis\n " +
-                "FROM quarto q\n " +
-                "INNER JOIN\n " +
-                "tipo_quarto tq\n " +
-                "ON q.id_tipo_quarto = tq.id\n " +
-                "INNER JOIN hospedagem h\n " +
-                "ON h.id_quarto = q.id\n " +
-                criterio + " GROUP BY 1";
+    public Map<TipoQuarto, Integer> listTiposQuartoDisponiveis() throws SQLException{
+            sql = "SELECT * FROM  tipo_quarto WHERE ocupacao =  0 ";
         
         Database.open();
         

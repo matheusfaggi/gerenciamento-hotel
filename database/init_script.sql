@@ -5,15 +5,16 @@ USE gerenciamento_hotel;
 CREATE TABLE tipo_quarto (
 	id INT AUTO_INCREMENT PRIMARY KEY,
     descricao VARCHAR(255),
-    qtdCamas INT
+    qtdCamas INT,
+    ocupacao TINYINT(1)
 );
-INSERT INTO tipo_quarto(descricao, qtdCamas) VALUES
-	("Quarto solteiro Standard", 1),
-	("Quarto solteiro Master", 1),
-	("Quarto solteiro Deluxe", 1),
-	("Quarto duplo solteiro Standard", 2),
-	("Quarto duplo solteiro Master", 2),
-	("Quarto duplo solteiro Deluxe", 2);
+INSERT INTO tipo_quarto(descricao, qtdCamas,ocupacao) VALUES
+	("Quarto solteiro Standard", 1,0),
+	("Quarto solteiro Master", 1,1),
+	("Quarto solteiro Deluxe", 1,0),
+	("Quarto duplo solteiro Standard", 2,1),
+	("Quarto duplo solteiro Master", 2,0),
+	("Quarto duplo solteiro Deluxe", 2,1);
 
 -- SELECT * FROM tipo_quarto;
 

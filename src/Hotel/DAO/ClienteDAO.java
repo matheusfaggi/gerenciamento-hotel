@@ -108,18 +108,19 @@ public class ClienteDAO implements DAO<Cliente>{
         List<Cliente> response = new ArrayList<> ();
         
         sql = "SELECT * FROM cliente";
-        if(criterio.length() > 0)
-            sql += " WHERE"+ criterio;
+        //if(criterio.length() > 0)
+          //  sql += " WHERE"+ criterio;
         
         Database.open();
         pst = Database.getConnection().prepareStatement(sql);
         
         rs = pst.executeQuery();
-        
         while(rs.next()){
             try {
                 cliente = new Cliente(rs.getString("nome"));
                 cliente.setEmail(rs.getString("email"));
+                cliente.setId(rs.getInt("id"));
+                response.add(cliente);
                 
             } catch (PessoaException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());

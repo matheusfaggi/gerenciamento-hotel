@@ -5,7 +5,7 @@
  */
 package Hotel.Hospedagem;
 
-import java.util.Date;
+import java.sql.Date;
 import Hotel.Pessoa.Cliente;
 import Hotel.Pessoa.Recepcionista;
 

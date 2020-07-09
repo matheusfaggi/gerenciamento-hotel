@@ -5,13 +5,15 @@
  */
 package Hotel.Views;
 
+import Hotel.DAO.ClienteDAO;
 import Hotel.DAO.HospedagemDAO;
 import Hotel.Hospedagem.*;
+import Hotel.Pessoa.Cliente;
 import java.sql.SQLException;
 import java.text.ParseException;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -21,6 +23,11 @@ import javax.swing.JOptionPane;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.List;
+import java.util.concurrent.TimeUnit;
+
 
 
 
@@ -31,7 +38,10 @@ import javax.swing.text.MaskFormatter;
 public class HospedagemView extends javax.swing.JFrame {
     private Reserva reserva;
     private JFrame parentFrame;
-    private Map<Quarto, Integer> quartosDisponiveis;
+    private Map<TipoQuarto, Integer> tipoquarto;
+    private Hospedagem hospedagem = new Hospedagem();
+    private List<Cliente>clientes;
+    
     /**
      * Creates new form Reserva
      */
@@ -39,6 +49,8 @@ public class HospedagemView extends javax.swing.JFrame {
         initComponents();
         btnCTA.setText("Criar");
         btnExcluir.setVisible(false);
+
+        
     }
     public HospedagemView(JFrame parent){
         initComponents();
@@ -154,7 +166,11 @@ public class HospedagemView extends javax.swing.JFrame {
 
         lblDiarias.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
-        cmbQuartos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbQuartos.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                cmbQuartosFocusGained(evt);
+            }
+        });
 
         jLabel10.setText("Quartos disponíveis");
 
@@ -179,8 +195,6 @@ public class HospedagemView extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addContainerGap(99, Short.MAX_VALUE))
         );
-
-        cmbQuartos1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -271,7 +285,40 @@ public class HospedagemView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCTAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCTAActionPerformed
-        // TODO add your handling code here:
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        HospedagemDAO dao = new HospedagemDAO();
+         ClienteDAO daoc = new ClienteDAO();
+        
+      
+        int a = 0,  b = 0; 
+        try {
+                Date  entrada =  sdf.parse(txtDataEntrada.getText());
+                Date saida =  sdf.parse(txtDataSaida.getText());
+            for (Cliente cliente : clientes) {
+            if(cmbQuartos1.getSelectedItem() == cliente.getEmail() ){
+                 b = cliente.getId();
+            }
+            }
+            for (TipoQuarto tipo : tipoquarto.keySet()) {
+            if(cmbQuartos.getSelectedItem() == tipo.getDescricao() ){
+                 a = tipo.getId();
+            } 
+            }
+            hospedagem = new Hospedagem(entrada, saida , a , b, 1);
+        } catch (ParseException ex) {
+            Logger.getLogger(HospedagemView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            if(new HospedagemDAO().adiciona(hospedagem)){
+                JOptionPane.showMessageDialog(parentFrame, "Cliente criado com sucesso", 
+                            "Sucesso :)", JOptionPane.INFORMATION_MESSAGE);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), 
+                            "Falhou :(", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnCTAActionPerformed
 
     private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
@@ -284,7 +331,26 @@ public class HospedagemView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+         HospedagemDAO dao = new HospedagemDAO();
+         ClienteDAO daoc = new ClienteDAO();
+        try {
+            this.tipoquarto = dao.listTiposQuartoDisponiveis();
+            for (TipoQuarto q: tipoquarto.keySet()){
+                cmbQuartos.addItem(q.getDescricao());
+               
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HospedagemView.class.getName()).log(Level.SEVERE, null, ex);
+        }  
+
+        try {   this.clientes = daoc.listar("");
+            for ( Cliente c: clientes){
+                cmbQuartos1.addItem(c.getEmail());
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(HospedagemView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void txtDataEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDataEntradaActionPerformed
@@ -296,13 +362,26 @@ public class HospedagemView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtDataSaidaActionPerformed
 
     private void txtDataSaidaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataSaidaFocusLost
-
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            java.util.Date entrada = sdf.parse(txtDataEntrada.getText());
+            java.util.Date saida = sdf.parse(txtDataSaida.getText());
+            long diffEmMil = Math.abs(saida.getTime() - entrada.getTime());
+            long diff = TimeUnit.DAYS.convert(diffEmMil , TimeUnit.MILLISECONDS);
+            lblDiarias.setText(String.valueOf(diff));
+        } catch (ParseException ex) {
+            Logger.getLogger(HospedagemView.class.getName()).log(Level.SEVERE, null, ex);
+        }
        
     }//GEN-LAST:event_txtDataSaidaFocusLost
 
     private void txtDataEntradaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDataEntradaFocusLost
        
     }//GEN-LAST:event_txtDataEntradaFocusLost
+
+    private void cmbQuartosFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cmbQuartosFocusGained
+        
+    }//GEN-LAST:event_cmbQuartosFocusGained
 
     /**
      * @param args the command line arguments
@@ -358,8 +437,8 @@ public class HospedagemView extends javax.swing.JFrame {
     private javax.swing.JButton btnCTA;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnExcluir;
-    private javax.swing.JComboBox<String> cmbQuartos;
-    private javax.swing.JComboBox<String> cmbQuartos1;
+    private javax.swing.JComboBox<Object> cmbQuartos;
+    private javax.swing.JComboBox<Object> cmbQuartos1;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
